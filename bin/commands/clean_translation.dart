@@ -12,6 +12,8 @@ class CleanTranslation extends Command {
         help: 'Save unused keys as a .txt file'
             'in the path provided',
         abbr: 'e');
+    argParser.addOption('file', help: 'Path of your arb files', abbr: 'f');
+    argParser.addMultiOption('path', help: 'Paths of your different projects using your translations key', abbr: 'p');
   }
 
   @override

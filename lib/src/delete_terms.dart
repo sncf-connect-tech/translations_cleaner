@@ -11,9 +11,11 @@ import 'package:translations_cleaner/src/unused_terms.dart';
 Future<void> deleteTerms(ArgResults? argResults) async {
   final bool exportTerms = argResults?['export'];
   final String? outputPath = argResults?['output-path'];
+  final String? arbPath = argResults?['file'];
+  final List<String>? filesPaths = argResults?['path'];
 
-  final files = translationFiles();
-  final terms = findUnusedTerms();
+  final files = translationFiles(arbPath);
+  final terms = findUnusedTerms(filesPaths, arbPath);
 
   if (terms.isNotEmpty && exportTerms) {
     exportUnusedTerms(terms, outputPath);

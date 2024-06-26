@@ -6,11 +6,13 @@ import 'package:translations_cleaner/src/translation_terms.dart';
 
 /// Searches through all `*.arb` files to check which translation terms
 /// have not been used.
-Set<Term> findUnusedTerms() {
+Set<Term> findUnusedTerms(List<String>? paths, String? arbPath) {
   print('FETCHING ALL THE TRANSLATION TERMS 🌏');
-  final terms = getTranslationTerms();
+  final terms = getTranslationTerms(arbPath);
   print('FETCHING ALL THE DART FILES TO LOOK THROUGH 🏗');
-  final dartFiles = getDartFiles();
+  final dartFiles = [
+    for (final path in paths ?? <String>[]) ...getDartFiles(path),
+  ];
   print('LOOKING THROUGH FILES TO FIND UNUSED TERMS 👀');
   final unusedTerms = Set<Term>.from(terms);
 

@@ -8,8 +8,11 @@ import 'package:glob/list_local_fs.dart';
 /// Iterate through all files ending in `*.arb` and extract all the translation
 /// terms being used.
 ///
-Set<Term> getTranslationTerms() {
-  final path = Directory.current.path;
+Set<Term> getTranslationTerms(String? path) {
+  final defaultPath = Directory.current.path;
+  if (path == null || path.isEmpty) {
+    path = defaultPath;
+  }
   final arbFile = Glob("$path/**.arb");
   final arbFiles = arbFile.listSync(followLinks: false);
 

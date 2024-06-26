@@ -20,6 +20,8 @@ class ListUnusedTranslations extends Command {
         help: 'Abort execution if '
             'unused translations are found. This can be helpful in CI, if you '
             'don\'t want to proceed if a build should fail');
+    argParser.addOption('file', help: 'Path of your arb files', abbr: 'f');
+    argParser.addMultiOption('path', help: 'Paths of your different projects using your translations key', abbr: 'p');
   }
 
   @override
@@ -35,7 +37,10 @@ class ListUnusedTranslations extends Command {
     final bool abort = argResults?['abort-on-unused'];
     final bool exportTerms = argResults?['export'];
     final String? outputPath = argResults?['output-path'];
-    final notUsed = findUnusedTerms();
+    final List<String>? paths = argResults?['path'];
+    final String? arbPath = argResults?['file'];
+
+    final notUsed = findUnusedTerms(paths, arbPath);
     if (notUsed.isNotEmpty && abort) {
       print('❌ ${notUsed.length} unused translations found, aborting ❌');
       exitCode = 1;

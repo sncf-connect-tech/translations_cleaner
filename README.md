@@ -34,6 +34,8 @@ Available for both commands
 - `-h, --help` - Print this usage information.
 - `-o, --output-path` - Path for saving exported file, defaults to root path of the folder
 - `-e, --[no-]export ` - Save unused keys as a .txt file in the path provided
+- `-p, --path ` - Paths of your different projects using your translations key
+- `-f, --[arb-]file ` - Path of your arb files
 
 ## Why 🤔
 
