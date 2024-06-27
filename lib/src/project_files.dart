@@ -8,10 +8,10 @@ List<FileSystemEntity> getDartFiles(String? path) {
   final defaultPath = Directory.current.path;
 
   if (path == null || path.isEmpty) {
-    path = defaultPath;
+    path = "$defaultPath/lib";
   }
 
-  final dartFile = Glob("$path/lib/**.dart");
+  final dartFile = Glob("$path/**.dart");
   final dartFiles = <FileSystemEntity>[];
   for (var entity in dartFile.listSync(followLinks: false)) {
     dartFiles.add(entity);
